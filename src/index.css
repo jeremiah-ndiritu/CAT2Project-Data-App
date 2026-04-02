@@ -1,0 +1,156 @@
+/* index.css */
+@import "tailwindcss";
+:root {
+  /* ================= COLORS ================= */
+
+  /* Primary Blue Theme */
+  --color-primary: #2563eb;
+  /* blue-600 */
+  --color-primary-dark: #1e40af;
+  /* blue-800 */
+  --color-primary-light: #60a5fa;
+  /* blue-400 */
+
+  /* Text */
+  --color-text: light-dark(#475569, #cbd5f5);
+  /* slate-600 / slate-300 */
+  --color-text-heading: light-dark(#0f172a, #f1f5f9);
+  /* slate-900 / slate-100 */
+
+  /* Background */
+  --color-bg: light-dark(#ffffff, #0b1220);
+  /* white / deep blue-black */
+  --color-surface: light-dark(#f8fafc, #111827);
+  /* subtle cards */
+
+  /* Borders */
+  --color-border: light-dark(#e2e8f0, #1f2937);
+
+  /* Code / muted */
+  --color-code-bg: light-dark(#f1f5f9, #1e293b);
+
+  /* Accent (blue system) */
+  --color-accent: light-dark(#3b82f6, #60a5fa);
+  --color-accent-bg: light-dark(rgba(59, 130, 246, 0.1),
+      rgba(96, 165, 250, 0.15));
+  --color-accent-border: light-dark(rgba(59, 130, 246, 0.4),
+      rgba(96, 165, 250, 0.5));
+
+  /* Social / cards */
+  --color-social-bg: light-dark(rgba(241, 245, 249, 0.6),
+      rgba(30, 41, 59, 0.6));
+
+  /* Shadow */
+  --color-shadow: light-dark(rgba(0, 0, 0, 0.08) 0 10px 15px -3px,
+      rgba(0, 0, 0, 0.5) 0 10px 15px -3px);
+
+  /* ================= FONTS ================= */
+
+  --font-sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  /* ================= BASE ================= */
+
+  font: 18px/145% var(--font-sans);
+  letter-spacing: 0.18px;
+
+  /* IMPORTANT: enables light-dark() switching */
+  color-scheme: light;
+
+  color: var(--color-text);
+  background: var(--color-bg);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+/* ================= MANUAL DARK MODE ================= */
+/* Only controls scheme — colors auto-switch via light-dark() */
+
+.dark-mode {
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+  }
+}
+
+/* ================= ROOT LAYOUT ================= */
+
+#root {
+  width: 1126px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--color-border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ================= TYPOGRAPHY ================= */
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--color-text-heading);
+}
+
+h1 {
+  font-size: 56px;
+  letter-spacing: -1.68px;
+  margin: 32px 0;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 118%;
+  letter-spacing: -0.24px;
+  margin: 0 0 8px;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+/* ================= CODE ================= */
+
+code,
+.counter {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  border-radius: 6px;
+  color: var(--color-text-heading);
+}
+
+code {
+  font-size: 14px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--color-code-bg);
+}
