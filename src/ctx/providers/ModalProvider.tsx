@@ -24,8 +24,10 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
       <Modal
         isOpen={modalState.isOpen}
         onRequestClose={hideModal}
-        className="bg-white p-4 max-w-md mx-auto rounded shadow-lg"
-        overlayClassName="fixed inset-0 bg-black/50"
+        // Added 'mt-20' or similar to make sure it's not hidden under a nav
+        className="bg-white p-4 max-w-md max-h-[80vh] mx-auto rounded shadow-lg mt-20 outline-none"
+        // Added flex centering to the overlay
+        overlayClassName="fixed inset-0 bg-black/50 max-h-[70vh] flex items-center justify-center z-50"
       >
         {modalState.children}
       </Modal>

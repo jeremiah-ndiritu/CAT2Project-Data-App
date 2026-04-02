@@ -2,6 +2,7 @@
 import React from "react";
 import type { Bundle } from "../../types/bundles";
 import { useModal } from "../../hooks/useModal";
+import BuyBundleModal from "./BuyBundleModal";
 
 interface BundleCardProps {
   bundle: Bundle;
@@ -11,10 +12,10 @@ const BundleCard: React.FC<BundleCardProps> = ({ bundle }) => {
   const dataInGb = (bundle.dataMB / 1000).toFixed(1);
   const { showModal } = useModal();
   const onBuy = async () => {
-    showModal(<h1>Success!</h1>);
+    showModal(<BuyBundleModal bundle={bundle} />);
   };
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
+    <div className="bg-white rounded-2xl max-h-[80vh] shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
       {/* Header with provider */}
       <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-4 text-white">
         <div className="flex justify-between items-center">
