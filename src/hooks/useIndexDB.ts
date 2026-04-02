@@ -1,36 +1,60 @@
 import dbInstance from "../services/db";
+import type { DataAppDB, DBKey } from "../services/db";
 
-export function useIndexedDB<T>(storeName: string) {
-  const getStore = async () => {
+export function useIndexedDB() {
+  const getDB = async (storeName: keyof DataAppDB & DBKey) => {
     const db = await dbInstance;
-    // Check if the store exists in the database schema
     if (!db.objectStoreNames.contains(storeName)) {
-      throw new Error(`Store "${storeName}" does not exist in the database.`);
+      throw new Error(`Store "${storeName}" does not exist.`);
     }
     return db;
   };
-  const add = async (item: T) => {
-    const db = await getStore()
-    // Use 'put' instead of 'add' if you want to overwrite existing keys
-    return await db.add(storeName, item);
+
+  // K extends keyof DataAppDB allows TS to "capture" the specific store name used
+  const add = async <K extends keyof DataAppDB & DBKey>(
+    storeName: K,
+    item: DataAppDB[K]["value"],
+  ) => {
+    const db = await getDB(storeName);
+    return db.add(storeName, item);
   };
 
-  // Removed storeName param since it's already in the hook scope
-  async function getItem(key: string): Promise<T | undefined> {
-    const db = await getStore();
-    return await db.get(storeName, key);
-  }
+  const put = async <K extends keyof DataAppDB & DBKey>(
+    storeName: K,
+    item: DataAppDB[K]["value"],
+  ) => {
+    const db = await getDB(storeName);
+    return db.put(storeName, item);
+  };
 
-  async function getAll(): Promise<T[]> {
-    const db = await getStore();
-    return await db.getAll(storeName);
-  }
+  const getItem = async <K extends keyof DataAppDB & DBKey>(
+    storeName: K,
+    key: string,
+  ) => {
+    const db = await getDB(storeName);
+    // Returns the specific "value" type for that store
+    return (await db.get(storeName, key)) as DataAppDB[K]["value"] | undefined;
+  };
 
-  // Bonus: Add a delete method
-  async function removeItem(key: string) {
-    const db = await getStore();
+  const getAll = async <K extends keyof DataAppDB & DBKey>(storeName: K) => {
+    const db = await getDB(storeName);
+    return (await db.getAll(storeName)) as DataAppDB[K]["value"][];
+  };
+
+  const removeItem = async (
+    storeName: keyof DataAppDB & DBKey,
+    key: string,
+  ) => {
+    const db = await getDB(storeName);
     await db.delete(storeName, key);
-  }
+  };
 
-  return { add, getItem, getAll, removeItem };
+  const getByProvider = async (provider: string) => {
+    const db = await getDB("bundles");
+    return db.getAllFromIndex("bundles", "by-provider", provider) as Promise<
+      DataAppDB["bundles"]["value"][]
+    >;
+  };
+
+  return { add, put, getItem, getAll, removeItem, getByProvider };
 }

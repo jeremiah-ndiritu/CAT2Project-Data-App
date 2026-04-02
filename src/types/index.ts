@@ -1,11 +1,3 @@
-export type Bundle = {
-  id: string;
-  name: string;
-  dataAmount: string;
-  validity: string;
-  price: number;
-};
-
 export type User = {
   id: string;
   username: string;
@@ -16,7 +8,7 @@ export type User = {
 export type Transaction = {
   id: string;
   userId: string;
-  bundleId: string;
+  bundleId: number | undefined ;
   date: string;
   price: number;
 };
