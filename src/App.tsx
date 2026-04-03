@@ -2,6 +2,7 @@
 import { useState } from "react";
 import BundleCard from "./components/bundles/BundleCard";
 import type { Bundle } from "./types/bundles";
+import Header from "./components/sections/Header";
 
 const initialBundles: Bundle[] = [
   {
@@ -138,41 +139,18 @@ function App() {
       : bundles.filter((b) => b.provider === selectedProvider);
 
   return (
-    <div className="min-h-screen bg-bg text-(--color-text)">
+    <div className="min-h-screen pt-14 bg-bg text-text">
       {/* Header */}
-      <header className="border-b border-(--color-border) bg-(--color-surface) sticky top-0 z-50">
-        <div className="max-w-5xl mx-auto px-6 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-(--color-primary) rounded-2xl flex items-center justify-center text-white font-bold text-2xl">
-              📱
-            </div>
-            <div>
-              <h1 className="text-2xl font-semibold text-(--color-text-heading) tracking-tight">
-                BundleHub
-              </h1>
-              <p className="text-sm text-(--color-text) -mt-1">
-                Data Bundles Management
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-(--color-text)">Admin Panel</div>
-            <div className="w-8 h-8 bg-(--color-primary) rounded-full flex items-center justify-center text-white text-sm font-medium">
-              JD
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="max-w-5xl mx-auto px-6 py-10">
         {/* Title & Filter */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
-            <h2 className="text-4xl font-semibold text-(--color-text-heading) tracking-tight mb-2">
+            <h2 className="text-4xl font-semibold text-text-heading tracking-tight mb-2">
               Available Data Bundles
             </h2>
-            <p className="text-(--color-text) text-lg">
+            <p className="text-text text-lg">
               Browse and manage mobile data bundles
             </p>
           </div>
@@ -185,8 +163,8 @@ function App() {
                 onClick={() => setSelectedProvider(provider)}
                 className={`px-5 py-2.5 rounded-2xl text-sm font-medium transition-all duration-200 ${
                   selectedProvider === provider
-                    ? "bg-(--color-primary) text-white shadow-lg shadow-[var(--color-primary)]/30"
-                    : "bg-(--color-surface) hover:bg-(--color-surface) border border-[var(--color-border)] hover:border-[var(--color-primary-light)]"
+                    ? "bg-primary text-white shadow-lg shadow-primary/30"
+                    : "bg-surface hover:bg-surface border border-border hover:border-primary-light"
                 }`}
               >
                 {provider}
@@ -203,14 +181,14 @@ function App() {
         </div>
 
         {filteredBundles.length === 0 && (
-          <div className="text-center py-20 text-[var(--color-text)]">
+          <div className="text-center py-20 text-text">
             No bundles found for this provider.
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-[var(--color-border)] py-8 text-center text-sm text-[var(--color-text)] bg-[var(--color-surface)]">
+      <footer className="mt-auto border-t border-border py-8 text-center text-sm text-text bg-surface">
         <p>BundleHub • Data Bundles Management App • Class Project</p>
       </footer>
     </div>

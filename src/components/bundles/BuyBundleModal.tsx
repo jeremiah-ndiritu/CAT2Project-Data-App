@@ -62,69 +62,62 @@ const BuyBundleModal = ({ bundle }: { bundle: Bundle }) => {
   const dataInGb = (bundle.dataMB / 1000).toFixed(1);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-surface rounded-3xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+      <div className="bg-surface rounded-2xl shadow-xl w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="bg-linear-to-r from-blue-600 to-indigo-600 px-6 py-5 text-white">
-          <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Confirm Bundle Purchase</h2>
-            <button
-              onClick={hideModal}
-              className="text-3xl leading-none hover:text-white/70"
-            >
-              ×
-            </button>
-          </div>
+        <div className="bg-primary px-4 py-3 text-white flex justify-between items-center">
+          <h2 className="text-lg font-semibold">Confirm Purchase</h2>
+          <button onClick={hideModal} className="text-xl">
+            ×
+          </button>
         </div>
 
-        {/* Bundle Summary */}
-        <div className="p-6 border-b">
-          <div className="bg-gray-50 rounded-2xl p-5">
-            <div className="text-sm text-gray-500">Selected Bundle</div>
-            <div className="font-semibold text-xl mt-1">{bundle.name}</div>
+        {/* Scrollable Content */}
+        <div className="overflow-y-auto flex-1">
+          {/* Bundle Summary */}
+          <div className="p-4 border-b">
+            <div className="bg-gray-50 rounded-xl p-4">
+              <div className="text-xs text-gray-500">Bundle</div>
+              <div className="font-medium text-base">{bundle.name}</div>
 
-            <div className="flex items-baseline gap-2 mt-3">
-              <span className="text-4xl font-bold text-green-600">
+              <div className="mt-2 text-2xl font-bold text-green-600">
                 KES {bundle.price.toLocaleString()}
-              </span>
-            </div>
-
-            <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="text-gray-500">Data</span>
-                <div className="font-medium">{dataInGb} GB</div>
               </div>
-              <div>
-                <span className="text-gray-500">Validity</span>
-                <div className="font-medium">{bundle.validityDays} days</div>
+
+              <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <span className="text-gray-500">Data</span>
+                  <div>{dataInGb} GB</div>
+                </div>
+                <div>
+                  <span className="text-gray-500">Validity</span>
+                  <div>{bundle.validityDays} days</div>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Input */}
+          <div className="p-4">
+            <label className="text-sm font-medium text-gray-700">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="0712345678"
+              maxLength={10}
+              className="w-full mt-2 px-3 py-2 border rounded-xl focus:outline-none focus:border-primary text-sm"
+            />
+          </div>
         </div>
 
-        {/* Phone Number Input */}
-        <div className="p-6">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Phone Number to Receive Bundle
-          </label>
-          <input
-            type="tel"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="0712345678"
-            maxLength={10}
-            className="w-full px-4 py-3.5 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500 text-lg placeholder-gray-400"
-          />
-          <p className="text-xs text-gray-500 mt-2">
-            Enter the Kenyan phone number that should receive the data bundle
-          </p>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="p-6 pt-0 flex gap-3">
+        {/* Actions */}
+        <div className="p-4 flex gap-2 border-t">
           <button
             onClick={hideModal}
-            className="flex-1 py-3.5 border border-gray-300 rounded-2xl font-medium hover:bg-gray-50 transition-colors"
+            className="flex-1 py-2 border rounded-xl text-sm"
             disabled={isProcessing}
           >
             Cancel
@@ -133,9 +126,9 @@ const BuyBundleModal = ({ bundle }: { bundle: Bundle }) => {
           <button
             onClick={handleConfirmPurchase}
             disabled={isProcessing || !phoneNumber.trim()}
-            className="flex-1 py-3.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-semibold rounded-2xl transition-colors flex items-center justify-center"
+            className="flex-1 py-2 bg-primary text-white rounded-xl text-sm"
           >
-            {isProcessing ? "Processing..." : `Pay KES ${bundle.price}`}
+            {isProcessing ? "..." : `Pay KES ${bundle.price}`}
           </button>
         </div>
       </div>

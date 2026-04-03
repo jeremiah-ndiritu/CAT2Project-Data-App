@@ -1,54 +1,59 @@
 /* index.css */
 @import "tailwindcss";
-:root {
+
+@theme {
   /* ================= COLORS ================= */
+  
+    /* Primary Blue Theme */
+    --color-primary: #2563eb;
+    /* blue-600 */
+    --color-primary-dark: #1e40af;
+    /* blue-800 */
+    --color-primary-light: #60a5fa;
+    /* blue-400 */
+  
+    /* Text */
+    --color-text: light-dark(#475569, #cbd5f5);
+    /* slate-600 / slate-300 */
+    --color-text-heading: light-dark(#0f172a, #f1f5f9);
+    /* slate-900 / slate-100 */
+  
+    /* Background */
+    --color-bg: light-dark(#ffffff, #0b1220);
+    /* white / deep blue-black */
+    --color-surface: light-dark(#f8fafc, #111827);
+    /* subtle cards */
+  
+    /* Borders */
+    --color-border: light-dark(#e2e8f0, #1f2937);
+  
+    /* Code / muted */
+    --color-code-bg: light-dark(#f1f5f9, #1e293b);
+  
+    /* Accent (blue system) */
+    --color-accent: light-dark(#3b82f6, #60a5fa);
+    --color-accent-bg: light-dark(rgba(59, 130, 246, 0.1),
+        rgba(96, 165, 250, 0.15));
+    --color-accent-border: light-dark(rgba(59, 130, 246, 0.4),
+        rgba(96, 165, 250, 0.5));
+  
+    /* Social / cards */
+    --color-social-bg: light-dark(rgba(241, 245, 249, 0.6),
+        rgba(30, 41, 59, 0.6));
+  
+    /* Shadow */
+    --color-shadow: light-dark(rgba(0, 0, 0, 0.08) 0 10px 15px -3px,
+        rgba(0, 0, 0, 0.5) 0 10px 15px -3px);
+  
+    /* ================= FONTS ================= */
+  
+    --font-sans: system-ui, "Segoe UI", Roboto, sans-serif;
+    --font-heading: system-ui, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, Consolas, monospace;
+}
 
-  /* Primary Blue Theme */
-  --color-primary: #2563eb;
-  /* blue-600 */
-  --color-primary-dark: #1e40af;
-  /* blue-800 */
-  --color-primary-light: #60a5fa;
-  /* blue-400 */
-
-  /* Text */
-  --color-text: light-dark(#475569, #cbd5f5);
-  /* slate-600 / slate-300 */
-  --color-text-heading: light-dark(#0f172a, #f1f5f9);
-  /* slate-900 / slate-100 */
-
-  /* Background */
-  --color-bg: light-dark(#ffffff, #0b1220);
-  /* white / deep blue-black */
-  --color-surface: light-dark(#f8fafc, #111827);
-  /* subtle cards */
-
-  /* Borders */
-  --color-border: light-dark(#e2e8f0, #1f2937);
-
-  /* Code / muted */
-  --color-code-bg: light-dark(#f1f5f9, #1e293b);
-
-  /* Accent (blue system) */
-  --color-accent: light-dark(#3b82f6, #60a5fa);
-  --color-accent-bg: light-dark(rgba(59, 130, 246, 0.1),
-      rgba(96, 165, 250, 0.15));
-  --color-accent-border: light-dark(rgba(59, 130, 246, 0.4),
-      rgba(96, 165, 250, 0.5));
-
-  /* Social / cards */
-  --color-social-bg: light-dark(rgba(241, 245, 249, 0.6),
-      rgba(30, 41, 59, 0.6));
-
-  /* Shadow */
-  --color-shadow: light-dark(rgba(0, 0, 0, 0.08) 0 10px 15px -3px,
-      rgba(0, 0, 0, 0.5) 0 10px 15px -3px);
-
-  /* ================= FONTS ================= */
-
-  --font-sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-heading: system-ui, "Segoe UI", Roboto, sans-serif;
-  --font-mono: ui-monospace, Consolas, monospace;
+:root {
+  
 
   /* ================= BASE ================= */
 
